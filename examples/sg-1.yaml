@@ -12,7 +12,7 @@ spec:
     id: configuration-aws-securitygroup
     rules:
       - type: ingress
-        self: true
+        isSelf: true
         protocol: "-1"
         description: Allow All Traffic eks-nodegroup SG
       - type: ingress

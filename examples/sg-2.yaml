@@ -27,11 +27,11 @@ spec:
         protocol: tcp
         description: Allow traffic to ControlPlane
       - type: ingress
-        self: true
+        isSelf: true
         protocol: "-1"
         description: Allow All Traffic from eks-controlplane SG
       - type: egress
-        self: true
+        isSelf: true
         description: Allow All Traffic Outbound
         protocol: "-1"
       - type: egress

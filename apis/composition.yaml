@@ -65,7 +65,7 @@ spec:
                 {{- end }}
                 description: {{ $rule.description }}
                 ipProtocol: '{{ $rule.protocol }}'
-                {{- if $rule.self }}
+                {{- if $rule.isSelf }}
                 referencedSecurityGroupIdSelector:
                   matchControllerRef: true
                 {{- end }}
