@@ -1,0 +1,66 @@
+apiVersion: aws.platform.upbound.io/v1alpha1
+kind: XSecurityGroup
+metadata:
+  name: eks-controlplane
+  annotations:
+    render.crossplane.io/composition-path: apis/composition.yaml
+    render.crossplane.io/function-path: examples/functions.yaml
+spec:
+  parameters:
+    region: us-west-2
+    id: configuration-aws-securitygroup
+    rules:
+      - type: ingress
+        fromPort: 443
+        toPort: 443
+        description: Allow HTTPS Traffic from eks-controlplane SG
+        sourceSecurityGroupName: eks-nodegroup
+        protocol: tcp
+      - type: ingress
+        fromPort: 443
+        toPort: 443
+        cidrBlocks:
+          - 10.0.0.0/8
+          - 168.74.0.0/16
+          - 172.16.0.0/12
+          - 192.168.0.0/16
+        protocol: tcp
+        description: Allow traffic to ControlPlane
+      - type: ingress
+        isSelf: true
+        protocol: "-1"
+        description: Allow All Traffic from eks-controlplane SG
+      - type: egress
+        isSelf: true
+        description: Allow All Traffic Outbound
+        protocol: "-1"
+      - type: egress
+        fromPort: 10250
+        toPort: 10250
+        description: Allow Traffic to eks-nodegroup SG
+        sourceSecurityGroupName: eks-nodegroup
+        protocol: tcp
+      - type: egress
+        fromPort: 5443
+        toPort: 5443
+        description: Allow Traffic to eks-nodegroup SG
+        sourceSecurityGroupName: eks-nodegroup
+        protocol: tcp
+      - type: egress
+        fromPort: 9443
+        toPort: 9443
+        description: Allow Traffic for Webhooks to eks-nodegroup SG
+        sourceSecurityGroupName: eks-nodegroup
+        protocol: tcp
+      - type: egress
+        fromPort: 8443
+        toPort: 8443
+        description: Allow Traffic for Webhooks to eks-nodegroup SG
+        sourceSecurityGroupName: eks-nodegroup
+        protocol: tcp
+      - type: egress
+        fromPort: 443
+        toPort: 443
+        description: Allow Traffic for Webhooks to eks-nodegroup SG
+        sourceSecurityGroupName: eks-nodegroup
+        protocol: tcp
