@@ -34,6 +34,8 @@ spec:
                 vpcIdSelector:
                   matchLabels:
                     networks.aws.platform.upbound.io/network-id: {{ $spec.parameters.id }}
+              providerConfigRef:
+                name: {{ $spec.parameters.providerConfigName }}
             {{- range $i, $rule := $spec.parameters.rules }}
             {{ $cidr := $rule.cidrBlocks }}
             {{- if not $cidr }}
