@@ -53,6 +53,8 @@ spec:
                             message: "When fromPort and toPort are specified, either cidrBlocks or sourceSecurityGroupName must be set."
                           - rule: "!has(self.isSelf) || (self.isSelf == false || (!has(self.cidrBlocks) && !has(self.sourceSecurityGroupName)))"
                             message: "When isSelf is true, neither cidrBlocks nor sourceSecurityGroupName can be specified."
+                          - rule: "!(self.protocol == '-1' && (has(self.fromPort) || has(self.toPort)))"
+                            message: "When protocol is -1, toPort and fromPort cannot be set."
                         properties:
                           type:
                             type: string
