@@ -18,7 +18,7 @@ spec:
   dependsOn:
     - configuration: xpkg.upbound.io/upbound/configuration-aws-network
       # renovate: datasource=github-releases depName=upbound/configuration-aws-network
-      version: "v0.14.0"
+      version: "v0.24.0"
     - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready
       # renovate: datasource=github-releases depName=crossplane-contrib/function-auto-ready
       version: "v0.2.1"
