@@ -1,0 +1,22 @@
+apiVersion: meta.dev.upbound.io/v1alpha1
+kind: Project
+metadata:
+  name: configuration-aws-securitygroup
+spec:
+  dependsOn:
+  - configuration: xpkg.upbound.io/upbound/configuration-aws-network
+    version: v0.24.0
+  - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready
+    version: '>=v0.0.0'
+  description: This configuration provides a foundation to build and operate AWS SecurityGroup.
+  license: Apache-2.0
+  maintainer: Upbound <support@upbound.io>
+  readme: |
+    This configuration is used for deploying and managing AWS SecurityGroup
+    using Crossplane. This setup provides the necessary infrastructure to
+    deploy AWS SecurityGroup with SecurityGroupRules This approach ensures a
+    flexible, streamlined deployment workflow. For more details and
+    customization options, you can explore [the GitHub
+    repository](https://github.com/upbound/configuration-aws-securitygroup).
+  repository: xpkg.upbound.io/upbound/configuration-aws-securitygroup
+  source: github.com/upbound/configuration-aws-securitygroup
