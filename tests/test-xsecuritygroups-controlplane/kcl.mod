@@ -1,5 +1,5 @@
 [package]
-name = "test-xsecuritygroups"
+name = "test-xsecuritygroups-controlplane"
 version = "0.0.1"
 
 [dependencies]

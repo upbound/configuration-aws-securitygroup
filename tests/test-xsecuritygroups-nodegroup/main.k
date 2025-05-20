@@ -1,13 +1,12 @@
 import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
+import models.io.upbound.aws.ec2.v1beta1 as ec2v1beta1
 
 _items = [
     metav1alpha1.CompositionTest{
         metadata.name: "test-xsecuritygroups-nodegroup"
         spec= {
             assertResources: [
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1"
-                    kind: "SecurityGroup"
+                ec2v1beta1.SecurityGroup{
                     metadata: {
                         name: "nodegroup"
                         annotations: {
@@ -30,9 +29,8 @@ _items = [
                         }
                     }
                 }
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1",
-                    kind: "SecurityGroupIngressRule",
+
+                ec2v1beta1.SecurityGroupIngressRule{
                     metadata: {
                         annotations: {
                             "crossplane.io/composition-resource-name": "sgrule-0-"
@@ -42,14 +40,14 @@ _items = [
                         }
                     }
                     spec: {
-                        deletionPolicy: "Delete",
+                        deletionPolicy: "Delete"
                         forProvider: {
-                            description: "Allow All Traffic eks-nodegroup SG",
-                            ipProtocol: "-1",
+                            description: "Allow All Traffic eks-nodegroup SG"
+                            ipProtocol: "-1"
                             referencedSecurityGroupIdSelector: {
                                 matchControllerRef: True
                             }
-                            region: "us-west-2",
+                            region: "us-west-2"
                             securityGroupIdSelector: {
                                 matchControllerRef: True
                             }
@@ -59,9 +57,8 @@ _items = [
                         }
                     }
                 }
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1",
-                    kind: "SecurityGroupIngressRule",
+
+                ec2v1beta1.SecurityGroupIngressRule{
                     metadata: {
                         annotations: {
                             "crossplane.io/composition-resource-name": "sgrule-1-"
@@ -71,15 +68,15 @@ _items = [
                         }
                     }
                     spec: {
-                        deletionPolicy: "Delete",
+                        deletionPolicy: "Delete"
                         forProvider: {
-                            description: "Allow Traffic from eks-controlplane SG",
+                            description: "Allow Traffic from eks-controlplane SG"
                             fromPort: 10250,
-                            ipProtocol: "tcp",
+                            ipProtocol: "tcp"
                             referencedSecurityGroupIdRef: {
                                 name: "eks-controlplane"
                             }
-                            region: "us-west-2",
+                            region: "us-west-2"
                             securityGroupIdSelector: {
                                 matchControllerRef: True
                             }
@@ -90,9 +87,8 @@ _items = [
                         }
                     }
                 }
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1",
-                    kind: "SecurityGroupIngressRule",
+
+                ec2v1beta1.SecurityGroupIngressRule{
                     metadata: {
                         annotations: {
                             "crossplane.io/composition-resource-name": "sgrule-2-"
@@ -102,15 +98,15 @@ _items = [
                         }
                     }
                     spec: {
-                        deletionPolicy: "Delete",
+                        deletionPolicy: "Delete"
                         forProvider: {
-                            description: "Allow Traffic from eks-controlplane SG",
+                            description: "Allow Traffic from eks-controlplane SG"
                             fromPort: 5443,
-                            ipProtocol: "tcp",
+                            ipProtocol: "tcp"
                             referencedSecurityGroupIdRef: {
                                 name: "eks-controlplane"
                             }
-                            region: "us-west-2",
+                            region: "us-west-2"
                             securityGroupIdSelector: {
                                 matchControllerRef: True
                             }
@@ -121,9 +117,8 @@ _items = [
                         }
                     }
                 }
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1",
-                    kind: "SecurityGroupIngressRule",
+
+                ec2v1beta1.SecurityGroupIngressRule{
                     metadata: {
                         annotations: {
                             "crossplane.io/composition-resource-name": "sgrule-3-"
@@ -133,15 +128,15 @@ _items = [
                         }
                     }
                     spec: {
-                        deletionPolicy: "Delete",
+                        deletionPolicy: "Delete"
                         forProvider: {
-                            description: "Allow Traffic from eks-controlplane SG",
+                            description: "Allow Traffic from eks-controlplane SG"
                             fromPort: 11520,
-                            ipProtocol: "tcp",
+                            ipProtocol: "tcp"
                             referencedSecurityGroupIdRef: {
                                 name: "eks-controlplane"
                             }
-                            region: "us-west-2",
+                            region: "us-west-2"
                             securityGroupIdSelector: {
                                 matchControllerRef: True
                             }
@@ -152,9 +147,8 @@ _items = [
                         }
                     }
                 }
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1",
-                    kind: "SecurityGroupIngressRule",
+
+                ec2v1beta1.SecurityGroupIngressRule{
                     metadata: {
                         annotations: {
                             "crossplane.io/composition-resource-name": "sgrule-4-"
@@ -164,15 +158,15 @@ _items = [
                         }
                     }
                     spec: {
-                        deletionPolicy: "Delete",
+                        deletionPolicy: "Delete"
                         forProvider: {
-                            description: "Allow Traffic for Webhooks from eks-controlplane SG",
+                            description: "Allow Traffic for Webhooks from eks-controlplane SG"
                             fromPort: 9443,
-                            ipProtocol: "tcp",
+                            ipProtocol: "tcp"
                             referencedSecurityGroupIdRef: {
                                 name: "eks-controlplane"
                             }
-                            region: "us-west-2",
+                            region: "us-west-2"
                             securityGroupIdSelector: {
                                 matchControllerRef: True
                             }
@@ -183,9 +177,8 @@ _items = [
                         }
                     }
                 }
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1",
-                    kind: "SecurityGroupIngressRule",
+
+                ec2v1beta1.SecurityGroupIngressRule{
                     metadata: {
                         annotations: {
                             "crossplane.io/composition-resource-name": "sgrule-5-"
@@ -195,15 +188,15 @@ _items = [
                         }
                     }
                     spec: {
-                        deletionPolicy: "Delete",
+                        deletionPolicy: "Delete"
                         forProvider: {
-                            description: "Allow Traffic for Webhooks from eks-controlplane SG",
+                            description: "Allow Traffic for Webhooks from eks-controlplane SG"
                             fromPort: 8443,
-                            ipProtocol: "tcp",
+                            ipProtocol: "tcp"
                             referencedSecurityGroupIdRef: {
                                 name: "eks-controlplane"
                             }
-                            region: "us-west-2",
+                            region: "us-west-2"
                             securityGroupIdSelector: {
                                 matchControllerRef: True
                             }
@@ -214,9 +207,8 @@ _items = [
                         }
                     }
                 }
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1",
-                    kind: "SecurityGroupIngressRule",
+
+                ec2v1beta1.SecurityGroupIngressRule{
                     metadata: {
                         annotations: {
                             "crossplane.io/composition-resource-name": "sgrule-6-"
@@ -226,15 +218,15 @@ _items = [
                         }
                     }
                     spec: {
-                        deletionPolicy: "Delete",
+                        deletionPolicy: "Delete"
                         forProvider: {
-                            description: "Allow Traffic for Webhooks from eks-controlplane SG",
+                            description: "Allow Traffic for Webhooks from eks-controlplane SG"
                             fromPort: 443,
-                            ipProtocol: "tcp",
+                            ipProtocol: "tcp"
                             referencedSecurityGroupIdRef: {
                                 name: "eks-controlplane"
                             }
-                            region: "us-west-2",
+                            region: "us-west-2"
                             securityGroupIdSelector: {
                                 matchControllerRef: True
                             }
@@ -245,9 +237,8 @@ _items = [
                         }
                     }
                 }
-                {
-                    apiVersion: "ec2.aws.upbound.io/v1beta1",
-                    kind: "SecurityGroupEgressRule",
+
+                ec2v1beta1.SecurityGroupEgressRule{
                     metadata: {
                         annotations: {
                             "crossplane.io/composition-resource-name": "sgrule-7-0-0-0-0-0"
@@ -257,12 +248,12 @@ _items = [
                         }
                     }
                     spec: {
-                        deletionPolicy: "Delete",
+                        deletionPolicy: "Delete"
                         forProvider: {
-                            cidrIpv4: "0.0.0.0/0",
-                            description: "Allow All Traffic Outbound",
-                            ipProtocol: "-1",
-                            region: "us-west-2",
+                            cidrIpv4: "0.0.0.0/0"
+                            description: "Allow All Traffic Outbound"
+                            ipProtocol: "-1"
+                            region: "us-west-2"
                             securityGroupIdSelector: {
                                 matchControllerRef: True
                             }

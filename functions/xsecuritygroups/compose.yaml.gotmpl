@@ -11,7 +11,8 @@ metadata:
   annotations:
     {{ setResourceNameAnnotation "securitygroup" }}
 spec:
-  deletionPolicy: {{ $spec.parameters.deletionPolicy | default "Delete" }}
+  deletionPolicy: {{ $spec.parameters.deletionPolicy }}
+  managementPolicies: ["*"]
   forProvider:
     name: {{ $xr.metadata.name }}
     region: {{ $spec.parameters.region }}
@@ -31,7 +32,8 @@ metadata:
   annotations:
     {{ setResourceNameAnnotation (printf "sgrule-%d-%s" $i ($cidrBlock | replace "." "-" | replace "/" "-")) }}
 spec:
-  deletionPolicy: {{ $spec.parameters.deletionPolicy | default "Delete" }}
+  deletionPolicy: {{ $spec.parameters.deletionPolicy }}
+  managementPolicies: ["*"]
   forProvider:
     {{- if $cidrBlock }}
     cidrIpv4: {{ $cidrBlock }}
