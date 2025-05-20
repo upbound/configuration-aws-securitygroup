@@ -1,6 +1,0 @@
-apiVersion: pkg.crossplane.io/v1
-kind: Configuration
-metadata:
-  name: configuration-aws-securitygroup
-spec:
-  package: xpkg.upbound.io/upbound/configuration-aws-securitygroup:v0.1.0
