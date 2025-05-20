@@ -9,9 +9,6 @@ spec:
   mode: Pipeline
   pipeline:
   - functionRef:
-      name: upbound-configuration-aws-securitygroupxsecuritygroups33
-    step: xsecuritygroups33
-  - functionRef:
       name: upbound-configuration-aws-securitygroupxsecuritygroups
     step: xsecuritygroups
   - functionRef:
